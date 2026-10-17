@@ -1,0 +1,81 @@
+@import "tailwindcss";
+@import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+@import url(https://fonts.googleapis.com/css?family=JetBrains+Mono:regular,500,600);
+
+@theme {
+
+  /* paddings */
+  --spacing-header-sm: 1rem;
+  --spacing-section-sm: 2rem; 
+  --spacing-section-md: 3rem; 
+  --spacing-section-xl: 4rem; 
+   
+  /* fonts */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace;
+
+  /* colors */
+  --color-bg-page: #080808;
+  --color-border-line: #1E1E1E;
+  --color-surface-panel: #1A1A1B;
+  --color-surface-secondary: #1E1E20;
+  --color-surface-hover: #232325;
+  --color-border-divider: #202022;
+
+  /* text */
+  --color-text-primary: #E0E0E0;
+  --color-text-secondary: #909098;
+
+  /* Акценты и сигналы (Accent & signals) */
+  --color-accent: #00FF94; /* emerald */
+  --color-positive: #00FF94;
+  --color-negative: #FF382E;
+  --color-error: #FF382E;
+
+  /* Графики (Chart series) */
+  --color-chart-emerald: #00FF94;
+  --color-chart-blue: #3D88F5;
+  --color-chart-amber: #F5CA47;
+  --color-chart-violet: #8B67E4;
+  --color-chart-red: #FF382E;
+}
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  
+  background-color: var(--color-bg-page);
+
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--color-text-primary);
+}
+
+.container {
+  width: calc(100% - 1rem);
+  margin-inline: auto;
+}
+
+main {
+  flex: 1; /* растягивает main, прижимая footer к низу */
+}
+
