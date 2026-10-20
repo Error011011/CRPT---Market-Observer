@@ -21,7 +21,5 @@ interface CoinGeckoGlobalResponse {
 
 export const getGlobalMarketData = async () : Promise<GlobalMarketData> => {
     const response = await axiosClient.get<CoinGeckoGlobalResponse>('/global')
-    console.log(response.data.data)
-
     return response.data.data
 }

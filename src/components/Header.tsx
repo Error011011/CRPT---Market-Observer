@@ -4,7 +4,7 @@ type Props = {}
 
 const Header = (props: Props) => {
   return (
-    <header className='py-header-sm sticky top-0 z-50 border-border-line border-1'>
+    <header className='py-header-sm sticky top-0 z-50 bg-bg-page border-border-line border-1'>
         <div className="container">
             <div  className='flex justify-between items-center'>
                 <div className='flex items-center gap-3'>

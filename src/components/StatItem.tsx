@@ -9,7 +9,7 @@ const StatItem = ({label, value}: Props) => {
   return (
     <div className='py-5 px-5 text-center lg:text-start'>
         <span className='uppercase text-text-secondary '>{label}</span>
-        <p className='text-mono text-text-primary text-[2rem] md:text-[3rem] lg:text-[3.5rem] xl:text-[4.5rem] 2xl:[5rem] 3xl:[7rem]'>{value}</p>
+        <p className='text-mono text-text-primary text-[2rem] md:text-[3rem] lg:text-[3rem] xl:text-[3.5rem] 2xl:[4rem] 3xl:[6rem] w-full wrap-break-word'>{value}</p>
     </div>
   )
 }

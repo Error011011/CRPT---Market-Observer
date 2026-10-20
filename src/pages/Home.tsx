@@ -1,5 +1,6 @@
 import React from 'react'
 import TotalInfo from '../components/TotalInfo'
+import CoinsList from '../components/CoinsList'
 
 type Props = {}
 
@@ -12,8 +13,8 @@ const Home = (props: Props) => {
     {/* total info */}
     <TotalInfo/>
 
-
     {/* list of currencies */}
+    <CoinsList/>
     </>
   )
 }
