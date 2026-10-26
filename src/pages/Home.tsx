@@ -1,20 +1,41 @@
 import React from 'react'
-import TotalInfo from '../components/TotalInfo'
+import MarketInfo from '../components/MarketInfo'
 import CoinsList from '../components/CoinsList'
+import { useQuery } from '@tanstack/react-query'
+import { getGlobalMarketData } from '../api/GlobalService'
+import { getTopCoins } from '../api/CoinsService'
 
 type Props = {}
 
 const Home = (props: Props) => {
+
+  const marketData = useQuery({
+          queryKey: ['globalMarketData'],
+          queryFn: getGlobalMarketData,
+          staleTime: 0,
+          refetchInterval: 30000
+      });
+
+    const coinsData = useQuery({
+        queryKey: ['coins'],
+        queryFn: getTopCoins
+      });
+
+    const isLoading = marketData.isLoading || coinsData.isLoading;
+    const isError = marketData.isError || coinsData.isError;
+    const error = marketData.error || coinsData.error;
+
+      if(isLoading) {
+        return <div className="py-5 lg:py-15 flex justify-center items-center text-text-secondary text-center animate-pulse min-h-75">Загрузка глобальных данных...</div>;
+      }
+      if(isError) {
+        return <div className="py-5 lg:py-15 flex justify-center items-center text-text-secondary text-center min-h-75">Error: {error?.message}</div>
+      }
+
   return (
     <>
-    {/* search */}
-
-
-    {/* total info */}
-    <TotalInfo/>
-
-    {/* list of currencies */}
-    <CoinsList/>
+    <MarketInfo data={marketData.data}/>
+    <CoinsList coins={coinsData.data}/>
     </>
   )
 }

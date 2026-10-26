@@ -1,33 +1,8 @@
-import { useQuery } from '@tanstack/react-query'
 import React from 'react'
-import { getGlobalMarketData } from '../api/GlobalService'
 import { formatMoney } from './utils/moneyHelper'
 import StatItem from './StatItem'
 
-const TotalInfo = () => {
-
-    const {data, isLoading, isError, error} = useQuery({
-        queryKey: ['globalMarketData'],
-        queryFn: getGlobalMarketData,
-        staleTime: 0,
-        refetchInterval: 30000
-    })
-
-
-  if (isLoading) {
-    return <div className="text-text-secondary text-center animate-pulse">Загрузка глобальных данных...</div>;
-  }
-
-   if (isError) {
-    // Проверяем, является ли ошибка ошибкой Axios, чтобы вытащить статус-код
-    // const errorMessage = isAxiosError(error) 
-    //   ? `Ошибка API: ${error.response?.status}`
-    //   : error.message;  
-    return <div className="text-error text-center">Ошибка: {error.message}</div>;
-  }
-
-  
-    
+const MarketInfo = ({data}) => {
     
   return (
     <section className='py-section-sm md:py-section-md xl:py-section-xl'>
@@ -49,4 +24,4 @@ const TotalInfo = () => {
   )
 }
 
-export default TotalInfo
+export default MarketInfo

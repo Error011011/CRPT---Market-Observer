@@ -1,15 +1,8 @@
-import { useQuery } from '@tanstack/react-query'
 import React from 'react'
-import { getTopCoins } from '../api/CoinsService'
 import CoinListItem from './CoinListItem'
 
 
-const CoinsList = () => {
-
-  const {data, isLoading, isError, error} = useQuery({
-    queryKey: ['coins'],
-    queryFn: getTopCoins
-  })
+const CoinsList = ({coins}) => {
 
   return (
     <section className='py-section-sm md:py-section-md xl:py-section-xl'>
@@ -19,21 +12,21 @@ const CoinsList = () => {
               <p className='text-text-secondary uppercase lg:text-[1.5rem]'>Top 50 by market cap</p>
             </div>
 
-            <table className='w-full'>
+            <table className='w-full border-collapse'>
               <thead className='text-text-secondary uppercase font-normal'>
-                <tr className=''>
-                  <th>#</th>
-                  <th>Coin</th>
-                  <th>Price</th>
-                  <th className=''>24H</th>
-                  <th className='hidden md:table-cell'>7D</th>
-                  <th className='hidden lg:table-cell'>Market Cap</th>
-                  <th className='hidden md:table-cell'>Volume 24h</th>
-                  <th className='hidden md:table-cell'>Last 24H</th>
+                <tr className=' border-b border-border-line'>
+                  <th className='py-3'>#</th>
+                  <th className='py-3'>Coin</th>
+                  <th className='py-3'>Price</th>
+                  <th className='py-3'>24H</th>
+                  <th className='py-3 hidden md:table-cell'>7D</th>
+                  <th className='py-3 hidden lg:table-cell'>Market Cap</th>
+                  <th className='py-3 hidden md:table-cell'>Volume 24h</th>
+                  <th className='py-3 hidden md:table-cell'>Last 24H</th>
                 </tr>
               </thead>
               <tbody>
-                {data && data.map((coin) => {
+                {coins && coins.map((coin) => {
                   return <CoinListItem market_cap_rank={coin.market_cap_rank} id={coin.id} name={coin.name} symbol={coin.symbol} current_price={coin.current_price} total_volume={coin.total_volume} price_change_percentage_24h_in_currency={coin.price_change_percentage_24h_in_currency} price_change_percentage_7d_in_currency={coin.price_change_percentage_7d_in_currency} image={coin.image} market_cap={coin.market_cap}/>
                 })}
               </tbody>

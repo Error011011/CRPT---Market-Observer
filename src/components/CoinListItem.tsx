@@ -6,8 +6,8 @@ import { Link } from 'react-router'
 
 const CoinListItem = ({market_cap_rank, id, name, symbol, current_price, total_volume, image, price_change_percentage_24h_in_currency, price_change_percentage_7d_in_currency, market_cap}: TopCoinsData) => {
   return (
-    <tr className='py-5 text-center'>
-        <td>{market_cap_rank}</td>
+    <tr className='py-5 text-center border-b border-border-line'>
+        <td className=' py-3 m-0'>{market_cap_rank}</td>
         <Link to={`${id}`}>
             <td className='px-5 md:px-7 lg:px-9 flex items-center justify-center lg:justify-start'>
                 <div>
@@ -19,12 +19,12 @@ const CoinListItem = ({market_cap_rank, id, name, symbol, current_price, total_v
                 </div>
             </td>
         </Link>
-        <td className='font-bold font-mono'>${current_price.toFixed(2)}</td>
-        <td className={`${changeColor(price_change_percentage_24h_in_currency)} font-mono`}>{price_change_percentage_24h_in_currency.toFixed(2)}</td>
-        <td className={`${changeColor(price_change_percentage_7d_in_currency)} hidden md:table-cell font-mono`}>{price_change_percentage_7d_in_currency}</td>
-        <td className='hidden lg:table-cell text-text-secondary font-mono'>{formatMoney(market_cap)}</td>
-        <td className='hidden md:table-cell text-text-secondary font-mono'>{formatMoney(total_volume)}</td>
-        <td className='hidden md:table-cell'>Last 24H</td>
+        <td className='font-bold font-mono py-3 m-0'>${current_price.toFixed(2)}</td>
+        <td className={`${changeColor(price_change_percentage_24h_in_currency)} font-mono py-3 m-0`}>{price_change_percentage_24h_in_currency.toFixed(2)}</td>
+        <td className={`${changeColor(price_change_percentage_7d_in_currency)} hidden md:table-cell font-mono py-3 m-0`}>{price_change_percentage_7d_in_currency}</td>
+        <td className='hidden lg:table-cell text-text-secondary font-mono py-3 m-0'>{formatMoney(market_cap)}</td>
+        <td className='hidden md:table-cell text-text-secondary font-mono py-3 m-0'>{formatMoney(total_volume)}</td>
+        <td className='hidden md:table-cell py-3 m-0'>Last 24H</td>
     </tr>
   )
 }

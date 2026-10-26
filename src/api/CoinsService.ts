@@ -22,11 +22,56 @@ interface CoinGeckoCoinsResponse {
     data: TopCoinsData[]
 }
 
+export interface OneCoinData {
+    id: string
+    symbol: string
+    market_cap_rank: number
+    name: string
+    image: {
+        small: string
+    }
+    description: {
+        en: string
+    }
+    market_data: {
+        current_price: {
+            usd: number
+        }
+        market_cap: {
+            usd: number
+        }
+        total_volume: {
+            usd: number
+        }
+        high_24h: {
+            usd:number
+        }
+        low_24h: {
+            usd: number
+        }
+        price_change_percentage_24h: number
+        price_change_percentage_7d: number
+        price_change_percentage_30d: number
+        total_supply: number
+        circulating_supply: number
+        max_supply: number
+
+    }
+
+}
+
+interface CoinGeckoOneCoinResponse {
+    data: OneCoinData
+}
+
 
 export const getTopCoins = async (): Promise<TopCoinsData> => {
-    const response = await axiosClient.get<CoinGeckoCoinsResponse>('/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&price_change_percentage=24h,7d')
-    console.log(response.data);
-
+    const response = await axiosClient.get<CoinGeckoCoinsResponse>('/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&price_change_percentage=24h,7d');
     return response.data
     
+}
+
+export const getOneCoin = async (id) : Promise<OneCoinData> => {
+    const response = await axiosClient.get<CoinGeckoOneCoinResponse>(`/coins/${id}`);
+    return response.data
 }
