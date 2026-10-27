@@ -5,6 +5,9 @@ import { getOneCoin } from '../api/CoinsService'
 import { changeColor } from '../components/utils/colorHelper'
 import { formatMoney } from '../components/utils/moneyHelper'
 import { formatCoinAmount } from '../components/utils/coinHelper'
+import CoinChart from '../components/CoinChart'
+
+
 type CoinParams = {
   id: string
 }
@@ -23,27 +26,27 @@ const Currency = (props: Props) => {
   const statArray = [
     {
       name: 'Market Cap',
-      value: formatMoney(data?.market_data.market_cap.usd) || 'no data'
+      value: formatMoney(data?.market_data.market_cap.usd)
     },
     {
       name: 'Total Volume',
-      value: formatMoney(data?.market_data.total_volume.usd) || 'no data'
+      value: formatMoney(data?.market_data.total_volume.usd)
     },
     {
       name: 'High 24H',
-      value: formatMoney(data?.market_data.high_24h.usd) || 'no data'
+      value: formatMoney(data?.market_data.high_24h.usd)
     },
     {
       name: 'Low 24H',
-      value: formatMoney(data?.market_data.low_24h.usd) || 'no data'
+      value: formatMoney(data?.market_data.low_24h.usd)
     },
     {
       name: 'Total Supply',
-      value: formatCoinAmount(data?.market_data.total_supply) || 'no data'
+      value: formatCoinAmount(data?.market_data.total_supply)
     },
     {
       name: 'Circulating Supply',
-      value: formatCoinAmount(data?.market_data.circulating_supply) || 'no data'
+      value: formatCoinAmount(data?.market_data.circulating_supply)
     },
     
     {
@@ -52,7 +55,7 @@ const Currency = (props: Props) => {
     },
     {
       name: 'Market Rank',
-      value: data?.market_cap_rank
+      value: data?.market_cap_rank ?? null
     },
     
   ]
@@ -92,8 +95,17 @@ const Currency = (props: Props) => {
           </div>
 
           
+
+          
         </div>
       </section>
+
+      <section className='py-section-sm md:py-section-md xl:py-section-xl'>
+        <div className="container">
+            {id && <CoinChart id={id}/>}
+        </div>
+      </section>
+
       <section className='py-section-sm md:py-section-md xl:py-section-xl'>
         <div className="container">
           <h3 className='mb-9 lg:mb-12 xl:mb-15 text-center md:text-start text-text-secondary uppercase'>Statistics</h3>
@@ -102,7 +114,7 @@ const Currency = (props: Props) => {
               {statArray.map((item) => {
                 return <div key={item.name} className='py-9 px-5 border border-border-line'>
                   <p className='mb-1 text-[0.75rem] md:text-[1rem] text-text-secondary uppercase'>{item.name}</p>
-                  <h3 className='font-mono text-[1.5rem] md:text-[2rem] lg:text-[2.5rem] xl:text-[3rem] 2xl:text-[4rem] text-wrap'>{item.value}</h3>
+                  <h3 className='font-mono text-[1.5rem] md:text-[2rem] lg:text-[2.5rem] xl:text-[3rem] 2xl:text-[4rem] text-wrap'>{item.value ?? '-'}</h3>
                 </div>
               })}
             </>}

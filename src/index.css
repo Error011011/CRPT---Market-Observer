@@ -12,7 +12,7 @@
    
   /* fonts */
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", sans-serif;
+  --font-mono: "JetBrains Mono", sans-serifva;
 
   /* colors */
   --color-bg-page: #080808;
