@@ -3,9 +3,8 @@ import { useCoinSearch } from './hooks/useCoinSearch'
 import { Link } from 'react-router'
 import { IoCloseOutline } from "react-icons/io5";
 
-type Props = {}
 
-const SearchBar = (props: Props) => {
+const SearchBar = () => {
   const [query, setQuery] = useState('');
   const {data: results, isLoading, isError} = useCoinSearch(query);
 

@@ -1,5 +1,4 @@
-import { dataTagErrorSymbol, useQuery } from '@tanstack/react-query'
-import React from 'react'
+import {useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router'
 import { getOneCoin } from '../api/CoinsService'
 import { changeColor } from '../components/utils/colorHelper'
@@ -13,9 +12,8 @@ type CoinParams = {
   id: string
 }
 
-type Props = {}
 
-const Currency = (props: Props) => {
+const Currency = () => {
   const {id}= useParams<CoinParams>();
 
   const {data, isLoading, isError, error} = useQuery({
