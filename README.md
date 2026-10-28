@@ -1,78 +1,37 @@
-# React + TypeScript + Vite
+CRPT — Market Observer
+A high-performance cryptocurrency market dashboard built with React, TypeScript, and Vite. This application provides real-time market insights, interactive historical charts, and a seamless search experience, leveraging the CoinGecko API.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🚀 Key Features
+Global Market Overview: Real-time tracking of total market cap, 24h volume, BTC/ETH dominance, and active cryptocurrencies.
 
-Currently, two official plugins are available:
+Top 50 Assets: A highly responsive data table displaying the top cryptocurrencies by market cap, complete with dynamic 24h sparklines.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Interactive Charting: Detailed coin pages featuring historical price charts (1D, 7D, 30D, 90D, 1Y) powered by TradingView's Lightweight Charts.
 
-## React Compiler
+Optimistic Search: A debounced, instant search bar with click-outside detection for finding specific assets across the CoinGecko database.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+Type-Safe & Performant: Built with strict TypeScript, leveraging TanStack Query for robust data caching, background refetching, and state management.
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+🛠 Tech Stack
+Framework: React 18+ (Bootstrapped with Vite)
 
-## Expanding the ESLint configuration
+Language: TypeScript (Strict mode)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Data Fetching: TanStack Query v5 (React Query) — Handles caching, deduplication, and background updates.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Routing: React Router — Handles navigation and scroll restoration.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Charting: Lightweight Charts by TradingView — Canvas-based, highly performant financial charts.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Styling: Tailwind CSS — Utility-first CSS framework for rapid UI development.
 
-```
+API: CoinGecko API — Free tier for cryptocurrency market data.
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+🧠 Architectural Decisions
+Colocation of Data: Components are responsible for their own data fetching. For example, <CoinChart /> fetches its own historical data based on its internal range state, rather than relying on prop-drilling from the parent page.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Query Key Factories: Query keys are structured systematically (['coin', id], ['coinChart', id, range]) to ensure precise cache invalidation and minimal network requests.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Abort Controllers: Axios requests are tied to TanStack Query's AbortSignal. This prevents race conditions and saves API rate limits when users rapidly switch between chart timeframes.
 
-```
+Graceful Null Handling: The CoinGecko API occasionally returns null for missing data points. The application features custom formatting helpers (formatMoney, formatCoinAmount) and UI fallbacks to ensure the app never crashes on missing data (e.g., displaying - instead of crashing on null.toFixed()).
