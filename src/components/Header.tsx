@@ -15,7 +15,6 @@ const Header = (props: Props) => {
                 <div className='flex items-center gap-1'>
                     <span className=''>LIVE</span>
                     <span className='hidden xl:block uppercase'>Usd</span>
-                    <span className='hidden xl:block uppercase'>Time</span>
                 </div>
             </div>
         </div>

@@ -6,6 +6,7 @@ import { changeColor } from '../components/utils/colorHelper'
 import { formatMoney } from '../components/utils/moneyHelper'
 import { formatCoinAmount } from '../components/utils/coinHelper'
 import CoinChart from '../components/CoinChart'
+import Loader from '../components/Loader'
 
 
 type CoinParams = {
@@ -62,7 +63,7 @@ const Currency = (props: Props) => {
 
   
     if(isLoading) {
-      return <div className="py-5 lg:py-15 flex justify-center items-center text-text-secondary text-center animate-pulse min-h-75">Loading...</div>;
+      return <Loader/>;
     }
     if(isError) {
       return <div className="py-5 lg:py-15 flex justify-center items-center text-text-secondary text-center min-h-75">Error: {error?.message}</div>

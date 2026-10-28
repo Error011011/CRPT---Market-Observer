@@ -1,5 +1,7 @@
 import React from 'react'
 import CoinListItem from './CoinListItem'
+import type { TopCoinsData } from '../api/CoinsService'
+
 
 
 const CoinsList = ({coins}) => {
@@ -27,7 +29,7 @@ const CoinsList = ({coins}) => {
               </thead>
               <tbody>
                 {coins && coins.map((coin) => {
-                  return <CoinListItem key={coin.id} market_cap_rank={coin.market_cap_rank} id={coin.id} name={coin.name} symbol={coin.symbol} current_price={coin.current_price} total_volume={coin.total_volume} price_change_percentage_24h_in_currency={coin.price_change_percentage_24h_in_currency} price_change_percentage_7d_in_currency={coin.price_change_percentage_7d_in_currency} image={coin.image} market_cap={coin.market_cap}/>
+                  return <CoinListItem key={coin.id} market_cap_rank={coin.market_cap_rank} id={coin.id} name={coin.name} symbol={coin.symbol} current_price={coin.current_price} total_volume={coin.total_volume} price_change_percentage_24h_in_currency={coin.price_change_percentage_24h_in_currency} price_change_percentage_7d_in_currency={coin.price_change_percentage_7d_in_currency} image={coin.image} market_cap={coin.market_cap} sparkline_in_7d={coin.sparkline_in_7d}/>
                 })}
               </tbody>
             </table>

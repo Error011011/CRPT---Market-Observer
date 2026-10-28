@@ -3,6 +3,7 @@ import './App.css'
 import Home from './pages/Home'
 import Currency from './pages/Currency'
 import Header from './components/Header'
+import ScrollToTop from './components/ScrollToTop'
 
 function App() {
  
@@ -12,6 +13,7 @@ function App() {
       {/* header */}
       <Header/>
       {/* main */}
+      <ScrollToTop/>
       <main>
         <Routes>
           <Route path='/' element={<Home/>}/>

@@ -3,9 +3,11 @@ import type { TopCoinsData } from '../api/CoinsService'
 import { formatMoney } from './utils/moneyHelper'
 import { changeColor } from './utils/colorHelper'
 import { Link } from 'react-router'
+import CoinSparkline from './CoinSparkline'
 
-const CoinListItem = ({market_cap_rank, id, name, symbol, current_price, total_volume, image, price_change_percentage_24h_in_currency, price_change_percentage_7d_in_currency, market_cap}: TopCoinsData) => {
-  return (
+const CoinListItem = ({market_cap_rank, id, name, symbol, current_price, total_volume, image, price_change_percentage_24h_in_currency, price_change_percentage_7d_in_currency, market_cap, sparkline_in_7d}: TopCoinsData) => {
+    const sparklineData = sparkline_in_7d?.price?.slice(-24) || [];
+    return (
     <tr className='py-5 text-center border-b border-border-line'>
         <td className=' py-3 m-0'>{market_cap_rank}</td>
         
@@ -30,7 +32,7 @@ const CoinListItem = ({market_cap_rank, id, name, symbol, current_price, total_v
     : '—'}</td>
         <td className='hidden lg:table-cell text-text-secondary font-mono py-3 m-0'>{formatMoney(market_cap)}</td>
         <td className='hidden md:table-cell text-text-secondary font-mono py-3 m-0'>{formatMoney(total_volume)}</td>
-        <td className='hidden md:table-cell py-3 m-0'>Last 24H</td>
+        <td className='hidden md:table-cell py-3 m-0'><CoinSparkline data={sparklineData} /></td>
     </tr>
   )
 }
