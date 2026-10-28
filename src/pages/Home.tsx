@@ -6,9 +6,8 @@ import { getTopCoins } from '../api/CoinsService'
 import Loader from '../components/Loader'
 import SearchBar from '../components/SearchBar'
 
-type Props = {}
 
-const Home = (props: Props) => {
+const Home = () => {
 
   const marketData = useQuery({
           queryKey: ['globalMarketData'],
@@ -32,6 +31,8 @@ const Home = (props: Props) => {
       if(isError) {
         return <div className="py-5 lg:py-15 flex justify-center items-center text-text-secondary text-center min-h-75">Error: {error?.message}</div>
       }
+
+      if(!marketData.data || !coinsData.data) return <Loader/>
 
   return (
     <>

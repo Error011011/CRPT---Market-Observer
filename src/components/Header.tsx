@@ -1,9 +1,9 @@
-import React from 'react'
+
 import { Link } from 'react-router'
 
-type Props = {}
 
-const Header = (props: Props) => {
+
+const Header = () => {
   return (
     <header className='py-header-sm sticky top-0 z-50 bg-bg-page border-border-line border-1'>
         <div className="container">

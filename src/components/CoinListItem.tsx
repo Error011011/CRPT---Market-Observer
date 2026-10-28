@@ -1,4 +1,3 @@
-import React from 'react'
 import type { TopCoinsData } from '../api/CoinsService'
 import { formatMoney } from './utils/moneyHelper'
 import { changeColor } from './utils/colorHelper'

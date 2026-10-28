@@ -18,7 +18,7 @@ const Currency = () => {
 
   const {data, isLoading, isError, error} = useQuery({
     queryKey: ['coin', `${id}`],
-    queryFn: () => getOneCoin(id),
+    queryFn: () => getOneCoin(id!),
     enabled: !!id
   })
 
@@ -86,9 +86,9 @@ const Currency = () => {
           <div className='flex flex-col md:flex-row md:justify-start md:items-baseline gap-7 lg:gap-9 text-center md:text-start '>
               <h2 className='text-[5rem] lg:text-[7rem] xl:text-[8rem]'>${data?.market_data.current_price.usd}</h2>
               <div className='flex gap-3 justify-center items-center'>
-                <span className='py-2 px-5 border border-border-line rounded-full'>24H  <span className={`${changeColor(data?.market_data.price_change_percentage_24h)}`}>{data?.market_data.price_change_percentage_24h.toFixed(2)}</span></span>
-                <span className='py-2 px-5 border border-border-line rounded-full'>7D  <span className={`${changeColor(data?.market_data.price_change_percentage_7d)}`}>{data?.market_data.price_change_percentage_7d.toFixed(2)}</span></span>
-                <span className='py-2 px-5 border border-border-line rounded-full'>30D  <span className={`${changeColor(data?.market_data.price_change_percentage_30d)}`}>{data?.market_data.price_change_percentage_30d.toFixed(2)}</span></span>
+                <span className='py-2 px-5 border border-border-line rounded-full'>24H  <span className={`${changeColor(data?.market_data.price_change_percentage_24h)}`}>{data?.market_data.price_change_percentage_24h?.toFixed(2) ?? '-'}</span></span>
+                <span className='py-2 px-5 border border-border-line rounded-full'>7D  <span className={`${changeColor(data?.market_data.price_change_percentage_7d)}`}>{data?.market_data.price_change_percentage_7d?.toFixed(2) ?? '-'}</span></span>
+                <span className='py-2 px-5 border border-border-line rounded-full'>30D  <span className={`${changeColor(data?.market_data.price_change_percentage_30d)}`}>{data?.market_data.price_change_percentage_30d?.toFixed(2) ?? '-'}</span></span>
               </div>
           
           </div>

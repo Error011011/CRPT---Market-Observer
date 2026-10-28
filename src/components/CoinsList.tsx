@@ -1,10 +1,12 @@
-import React from 'react'
 import CoinListItem from './CoinListItem'
 import type { TopCoinsData } from '../api/CoinsService'
 
+type CoinListProps = {
+  coins: TopCoinsData[]
+}
 
 
-const CoinsList = ({coins}) => {
+const CoinsList = ({coins}: CoinListProps) => {
 
   return (
     <section className='py-section-sm md:py-section-md xl:py-section-xl'>
